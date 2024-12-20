@@ -1,7 +1,7 @@
 name: disable_web_context_menu
 description: "Disables the web context menu for a given widget"
 homepage: https://github.com/nank1ro/disable_web_context_menu
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ^3.6.0
