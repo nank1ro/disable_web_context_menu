@@ -1,16 +1,36 @@
-# disable_context_menu
+# DisableWebContextMenu
 
-A new Flutter project.
+A Flutter widget that disables the native context menu on web for the child widget.
 
-## Getting Started
+Read the blog post about it [here](https://mariuti.com/posts/flutter-web-disable-browser-context-menu-for-specific-widget/)
 
-This project is a starting point for a Flutter application.
+## Usage
 
-A few resources to get you started if this is your first Flutter project:
+```dart
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: DisableWebContextMenu(
+          child: Container(
+            width: 200,
+            height: 200,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+            ),
+            child: Text(
+              'This container has the native context menu disabled on right click',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```dart
