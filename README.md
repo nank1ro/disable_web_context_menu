@@ -4,6 +4,8 @@ A Flutter widget that disables the native context menu on web for the child widg
 
 Read the blog post about it [here](https://mariuti.com/posts/flutter-web-disable-browser-context-menu-for-specific-widget/)
 
+You can test if live [here](https://987d6bac.disable-web-context-menu.pages.dev/)
+
 ## Usage
 
 ```dart
