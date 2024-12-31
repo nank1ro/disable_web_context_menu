@@ -13,7 +13,7 @@ What if you want to disable it to show a custom Flutter widget instead?
 
 <img src="https://raw.githubusercontent.com/nank1ro/disable_web_context_menu/main/assets/problem.png" height="400">
 
-As you can see when you try to display the custom flutter widget, the native web context menu is shown together. Play close attention to the right circle, it's the flutter context menu.
+As you can see when you try to display the custom flutter widget, the native web context menu is shown together. Play close attention to the red circle, it's the flutter context menu.
 
 Flutter provides a solution you can [check here](https://api.flutter.dev/flutter/widgets/ContextMenuController-class.html) which uses:
 ```dart
