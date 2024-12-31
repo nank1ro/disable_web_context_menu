@@ -1,7 +1,7 @@
 name: disable_web_context_menu
 description: "Disables the web context menu for a given widget"
 homepage: https://github.com/nank1ro/disable_web_context_menu
-version: 1.0.0+2
+version: 1.1.0+2
 
 environment:
   sdk: ^3.6.0
@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  web: ^1.1.0
 
 dev_dependencies:
   flutter_test:

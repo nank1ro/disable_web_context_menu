@@ -1,5 +1,5 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'dart:js_interop';
+import 'package:web/web.dart' as html;
 import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 
@@ -33,39 +33,43 @@ class _DisableWebContextMenuState extends State<DisableWebContextMenu> {
       final element = findElement();
       if (element != null) {
         element.setAttribute('oncontextmenu', 'return false;');
-      } else {
-        addObserver();
       }
     });
+    addObserver();
   }
 
   html.Element? findElement() => html.document
       .querySelector('flt-semantics-host')
       ?.querySelector('[flt-semantics-identifier="$identifier"]');
   void addObserver() {
-    observer = html.MutationObserver((mutations, _) {
+    observer = html.MutationObserver((JSArray jsMutations, void _) {
+      final mutations = jsMutations.dartify() as List<dynamic>;
       for (final mutation in mutations) {
-        if (mutation is! html.MutationRecord) continue;
-        if (mutation.addedNodes?.isNotEmpty ?? false) {
-          for (final node in mutation.addedNodes!) {
-            if (node is html.HtmlElement) {
-              final id = node.attributes['flt-semantics-identifier'];
-              if (id == identifier) {
-                node.setAttribute('oncontextmenu', 'return false;');
-                removeObserver();
-                break;
-              }
-            }
+        final m = mutation as html.MutationRecord;
+        if (m.type == 'attributes' &&
+            m.attributeName == 'flt-semantics-identifier') {
+          final node = m.target as html.HTMLElement;
+          final id =
+              node.attributes.getNamedItem('flt-semantics-identifier')?.value;
+
+          if (id == identifier) {
+            node.setAttribute('oncontextmenu', 'return false;');
+            removeObserver();
+            break;
           }
         }
       }
-    });
+    }.toJS);
+
     observer!.observe(
       html.document,
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['flt-semantics-identifier'],
+      html.MutationObserverInit(
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter:
+            (['flt-semantics-identifier'].jsify() as JSArray<JSString>),
+      ),
     );
   }
 
