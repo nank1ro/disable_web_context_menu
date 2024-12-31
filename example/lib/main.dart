@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: TapRegion(
           onTapOutside: (_) {
-            // When tapping outide the container, hide the context menu.
+            // When tapping outside the container, hide the context menu.
             ContextMenuController.removeAny();
           },
           child: DisableWebContextMenu(
@@ -100,7 +100,7 @@ class _ContextMenuRegion extends StatefulWidget {
 class _ContextMenuRegionState extends State<_ContextMenuRegion> {
   final controller = ContextMenuController();
 
-  void _onSecondaryTapUp(TapUpDetails details) {
+  void _onSecondaryTapDown(TapDownDetails details) {
     _show(details.globalPosition);
   }
 
@@ -133,7 +133,7 @@ class _ContextMenuRegionState extends State<_ContextMenuRegion> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onSecondaryTapUp: _onSecondaryTapUp,
+      onSecondaryTapDown: _onSecondaryTapDown,
       onTap: _onTap,
       child: widget.child,
     );
