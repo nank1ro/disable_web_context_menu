@@ -4,7 +4,7 @@ A Flutter widget that disables the native context menu on web for the child widg
 
 Read the blog post about it [here](https://mariuti.com/posts/flutter-web-disable-browser-context-menu-for-specific-widget/)
 
-You can test it live [here](https://987d6bac.disable-web-context-menu.pages.dev/)
+**You can test it live [here](https://987d6bac.disable-web-context-menu.pages.dev/)**
 
 ## Problem
 
@@ -34,6 +34,8 @@ This package introduces a widget called `DisableWebContextMenu` that disables th
 You can safely import and use it in all the platforms, because on non-web platforms this package does nothing.
 
 <img src="https://raw.githubusercontent.com/nank1ro/disable_web_context_menu/main/assets/solution.png" height="400">
+
+> TIP: If you right click outside the container, the native web context menu will be shown.
 
 ## Example Usage
 
